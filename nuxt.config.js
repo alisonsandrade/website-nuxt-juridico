@@ -43,8 +43,14 @@ export default {
     '@nuxtjs/axios'
   ],
 
+  // env: {
+  //   baseUrlAPI: process.env.VUE_APP_BASE_URL_API || 'http://10.0.0.105:1337'
+  // },
+
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseURL: process.env.VUE_APP_BASE_URL_API || 'http://10.0.0.105:1337'
+  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
@@ -60,7 +66,16 @@ export default {
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
           success: colors.green.accent3
-        }
+        },
+        light: {
+          primary: '#D3C3BC',
+          secondary: '#BFADA5',
+          accent: '#D8EBF1',
+          warning: colors.amber.base,
+          info: '#5E1415',
+          error: colors.deepOrange.accent4,
+          success: colors.green.accent3
+        },
       }
     }
   },

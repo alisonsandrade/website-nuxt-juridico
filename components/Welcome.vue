@@ -1,0 +1,28 @@
+<template>
+  <section
+    id="welcome"
+    class="overflow-hidden"
+  >
+    <v-parallax
+      dark
+      :src="require('@/assets/parallax.jpg')"
+      height="400"
+    >
+      <v-row
+        align="center"
+        justify="center"
+      >
+        <v-col
+          class="text-center"
+          cols="12"
+        >
+          <v-img
+            :src="require('@/assets/logo_aline1.png')"
+            contain
+            max-height="200"
+          />
+        </v-col>
+      </v-row>
+    </v-parallax>
+  </section>
+</template>
