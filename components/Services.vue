@@ -12,7 +12,7 @@
         md="6"
       >
         <v-img
-          :src="require('@/assets/services.png')"
+          :src="require('@/static/images/services.png')"
           height="100%"
         />
       </v-col>

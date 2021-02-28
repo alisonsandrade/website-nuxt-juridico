@@ -5,7 +5,7 @@
     <v-parallax
       id="blog"
       dark
-      :src="require('@/assets/blog-banner.jpg')"
+      :src="require('@/static/images/blog-banner.jpg')"
       height="300"
     >
       <v-row

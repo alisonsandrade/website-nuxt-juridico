@@ -274,7 +274,7 @@ export default {
       if (item && item.image) {
         return item.image.formats.thumbnail.url
       }
-      return require('@/assets/thumbnail_default.jpg')
+      return require('@/static/images/thumbnail_default.jpg')
     },
 
     async filtrarPorCategoria (nomeCategoria) {

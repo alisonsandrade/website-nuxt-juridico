@@ -5,7 +5,7 @@
   >
     <v-parallax
       dark
-      :src="require('@/assets/parallax.jpg')"
+      :src="require('@/static/images/parallax.jpg')"
       height="400"
     >
       <v-row
@@ -17,7 +17,7 @@
           cols="12"
         >
           <v-img
-            :src="require('@/assets/logo_aline1.png')"
+            :src="require('@/static/images/logo_aline1.png')"
             contain
             max-height="200"
           />

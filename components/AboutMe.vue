@@ -53,7 +53,7 @@
         md="6"
       >
         <v-img
-          :src="require('@/assets/welcome.jpg')"
+          :src="require('@/static/images/welcome.jpg')"
           height="100%"
         />
       </v-col>

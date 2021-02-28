@@ -18,7 +18,7 @@
           <v-slide-x-transition>
             <NuxtLink to="/#welcome">
               <v-img
-                :src="!isScrolling ? require('@/assets/logo.png') : require('@/assets/logo2.png')"
+                :src="!isScrolling ? require('@/static/images/logo.png') : require('@/static/images/logo2.png')"
                 contain
                 height="50"
                 :max-width="$vuetify.breakpoint.width - 90"
@@ -88,7 +88,7 @@
         <div class="pa-4">
           <a href="/#welcome">
             <v-img
-              :src="require('@/assets/logo_aline2.png')"
+              :src="require('@/static/images/logo_aline2.png')"
               contain
               height="70"
             />

@@ -35,7 +35,7 @@
                 :max-width="$vuetify.breakpoint.width > 1670 ? '350' : '330'"
               >
                 <v-img
-                  :src="require(`@/assets/${area.img}.jpeg`)"
+                  :src="require(`@/static/images/${area.img}.jpeg`)"
                   :max-height="$vuetify.breakpoint.lgAndUp ? '220' : '200'"
                   :min-height="$vuetify.breakpoint.lgAndUp ? '220' : '200'"
                   class="max-auto mr-3 ml-3 rounded-lg"

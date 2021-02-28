@@ -12,7 +12,7 @@
         md="6"
       >
         <v-img
-          :src="require('@/assets/contact.png')"
+          :src="require('@/static/images/contact.png')"
           height="100%"
           max-height="800"
         />

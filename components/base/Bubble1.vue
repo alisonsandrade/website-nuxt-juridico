@@ -5,7 +5,7 @@
     max-height="200"
     width="100%"
     position="top right"
-    :src="require('@/assets/bubbles1.png')"
+    :src="require('@/static/images/bubbles1.png')"
   />
 </template>
 
