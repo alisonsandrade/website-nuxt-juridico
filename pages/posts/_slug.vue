@@ -64,16 +64,6 @@
             </v-card-subtitle>
           </v-card-text>
 
-          <div
-            class="fb-like pl-4"
-            :data-href="hrefLocation"
-            data-width=""
-            data-layout="button_count"
-            data-action="like"
-            data-size="small"
-            data-share="true"
-          />
-
           <!-- Facebook Shared -->
           <div class="share-network-list">
             <ShareNetwork
@@ -150,7 +140,7 @@ export default {
     const { data } = await $axios.get(`/posts/${params.slug}`)
     return {
       data,
-      hrefLocation: process.env.baseUrl + '/posts/' + data.slug,
+      hrefLocation: process.env.baseURL + '/posts/' + data.slug,
       imageUrl: data?.image?.url
     }
   },
