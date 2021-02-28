@@ -52,7 +52,7 @@
               class="ma-1"
               text
               :color="!isScrolling ? 'info' : 'primary'"
-              :to="{ name: 'Postagens' }"
+              to="/posts"
             >
               Notícias
             </v-btn>

@@ -6,7 +6,7 @@
 
     <services />
 
-    <!-- <blog /> -->
+    <blog />
 
     <about-me />
 
@@ -24,7 +24,7 @@ export default {
     Welcome: () => import('@/components/Welcome'),
     AreaAtuacao: () => import('@/components/AreaAtuacao'),
     Services: () => import('@/components/Services'),
-    // Blog: () => import('@/components/Blog'),
+    Blog: () => import('@/components/Blog'),
     AboutMe: () => import('@/components/AboutMe'),
     GetInTouch: () => import('@/components/GetInTouch')
     // SocialMediaBanner: () => import('@/components/SocialMediaBanner')

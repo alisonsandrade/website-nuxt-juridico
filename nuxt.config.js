@@ -24,6 +24,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/disqus',
+    '@/plugins/vue-social-sharing'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -43,9 +45,9 @@ export default {
     '@nuxtjs/axios'
   ],
 
-  // env: {
-  //   baseUrlAPI: process.env.VUE_APP_BASE_URL_API || 'http://10.0.0.105:1337'
-  // },
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000'
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
