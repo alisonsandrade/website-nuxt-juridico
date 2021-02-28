@@ -197,19 +197,7 @@ export default {
     }
   },
 
-  mounted () {
-    this.init() // Inicializam os dados
-  },
-
   methods: {
-    async init () {
-      // Recarregamento do plugin/script do Facebook
-      // window.FB.XFBML.parse()
-
-      const slug = this.$route.params.slug
-      this.data = await this.reloadPost(slug)
-    },
-
     newComment (e) {
       this.resetCountDisqus()
     },
