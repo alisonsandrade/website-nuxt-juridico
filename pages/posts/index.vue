@@ -1,24 +1,24 @@
 <template>
   <div>
     <v-row v-if="$fetchState.pending">
-      <p class="pa-2">Carregando os dados. Aguarde...</p>
+      <p class="pa-2">
+        Carregando os dados. Aguarde...
+      </p>
     </v-row>
     <v-row v-else class="mt-6 text-justify">
-      <p v-if="$fetchState.pending">Carregando. Aguarde...</p>
-
       <v-col
         cols="12"
         md="8"
         lg="8"
         xl="9"
       >
-        <!-- <post-search
+        <post-search
           v-if="$route.query.search || search"
           class="pa-4 mb-4"
           :search="$route.query.search || search"
           :params="$route.query.params || params"
           @reset="resetSearch"
-        /> -->
+        />
 
         <!-- Card principal das postagens -->
         <v-card
@@ -62,10 +62,10 @@
                   mdi-comment-text-multiple-outline
                 </v-icon>
 
-                <!-- <DisqusCount
+                <DisqusCount
                   shortname="alinepontes"
                   :identifier="`/posts/${post.slug}`"
-                /> -->
+                />
               </v-row>
             </v-card-subtitle>
           </v-card-text>
@@ -156,8 +156,6 @@
 export default {
   name: 'PostList',
 
-  layout: 'blog',
-
   components: {
     SideBar: () => import('@/components/SideBar')
   },
@@ -168,25 +166,22 @@ export default {
     }
   },
 
-  head: {
-    title: 'Blog de Notícia - Aline Pontes Advocacia'
-  },
+  layout: 'blog',
 
   data: () => ({
-    // locationOrigin: window.location.origin,
-    locationOrigin: '',
     loading: false,
     overlay: false,
     search: '', // Parâmetro principal da pesquisa
     params: '', // Parâmetro secundário
     page: 1,
-    totalPorPagina: 5,
+    totalPorPagina: 2,
     totalPosts: 0,
     posts: []
   }),
 
   async fetch () {
     try {
+      this.loading = true
       const response = await this.$axios.get('/posts/count')
       this.totalPosts = response.data
 
@@ -196,7 +191,13 @@ export default {
       this.page = 1
     } catch (error) {
       return error
+    } finally {
+      this.loading = false
     }
+  },
+
+  head: {
+    title: 'Blog de Notícia - Aline Pontes Advocacia'
   },
 
   computed: {
@@ -250,43 +251,18 @@ export default {
       this.params = this.$route.query.params
       this.pesquisar()
     } else {
-      this.init()
+      this.$fetch()
     }
   },
 
   created () {
-    // this.$eventBus.$on('pesquisar', ({ search, params }) => {
-    //   this.search = search
-    //   this.params = params
-    // })
+    this.$eventBus.$on('pesquisar', ({ search, params }) => {
+      this.search = search
+      this.params = params
+    })
   },
 
   methods: {
-    async init () {
-      // if (window.DISQUSWIDGETS) {
-      //   window.DISQUSWIDGETS.getCount({ reset: true })
-      // }
-
-      // try {
-      //   this.loading = true
-      //   this.overlay = true
-
-      //   // Total de páginas
-      //   const response = await this.$axios.get('/posts/count')
-      //   this.totalPosts = response.data
-
-      //   const { data } = await this.$axios.get(`/posts?_sort=published_at:DESC&_limit=${this.totalPorPagina}&_start=0`)
-      //   this.posts = data
-
-      //   this.page = 1
-      // } catch (error) {
-      //   return error
-      // } finally {
-      //   this.loading = false
-      //   this.overlay = false
-      // }
-    },
-
     getAuthor (data) {
       if (data.author) {
         return data.author.name ? data.author.name : data.author.username
@@ -340,7 +316,7 @@ export default {
       this.params = null
       this.$router.replace({ query: null })
       this.page = 1
-      this.init()
+      this.$fetch()
     }
   }
 }

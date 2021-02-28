@@ -115,7 +115,7 @@
         three-line
         class="transparent"
       >
-        <template>
+        <template #default>
           <v-treeview
             :items="items"
             item-text="title"
@@ -126,7 +126,7 @@
             open-on-click
             transition
           >
-            <template v-slot:prepend="{ item, open }">
+            <template #prepend="{ item, open }">
               <v-icon v-if="!item._id">
                 {{ open ? 'mdi-folder-open' : 'mdi-folder' }}
               </v-icon>
@@ -282,7 +282,7 @@ export default {
 
     async filtrarCategoria (categoria) {
       try {
-        await this.$router.push({ name: 'Posts', query: { search: 'Categoria', params: categoria.nome, page: 1 } })
+        await this.$router.push({ name: 'posts', query: { search: 'Categoria', params: categoria.nome, page: 1 } })
         this.$eventBus.$emit('pesquisar', { search: 'Categoria', params: categoria.nome })
       } catch (error) {
         return error
@@ -296,7 +296,7 @@ export default {
         this.alert = true
       } else {
         try {
-          await this.$router.push({ name: 'Posts', query: { search: 'Notícia', params: this.search, page: 1 } })
+          await this.$router.push({ name: 'posts', query: { search: 'Notícia', params: this.search, page: 1 } })
           this.$eventBus.$emit('pesquisar', { search: 'Notícia', params: this.search })
         } catch (error) {
           if (error.name === 'NavigationDuplicated') {

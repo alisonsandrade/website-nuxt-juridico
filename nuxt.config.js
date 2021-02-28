@@ -25,7 +25,8 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/disqus',
-    '@/plugins/vue-social-sharing'
+    '@/plugins/vue-social-sharing',
+    '@/plugins/event-bus'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
