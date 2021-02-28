@@ -174,7 +174,7 @@ export default {
     search: '', // Parâmetro principal da pesquisa
     params: '', // Parâmetro secundário
     page: 1,
-    totalPorPagina: 2,
+    totalPorPagina: 5,
     totalPosts: 0,
     posts: []
   }),

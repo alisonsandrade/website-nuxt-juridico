@@ -16,13 +16,13 @@
           <v-list class="transparent">
             <template v-for="(item, index) in items">
               <v-subheader
-                v-if="item.header"
+                v-show="item.header"
                 :key="item.header"
                 v-text="item.header"
               />
 
               <v-divider
-                v-else-if="item.divider"
+                v-if="item.divider"
                 :key="index"
               />
 
@@ -41,7 +41,7 @@
 
         <!-- Coluna frase do dia -->
         <v-col
-          v-if="!$vuetify.breakpoint.sm"
+          v-show="!$vuetify.breakpoint.sm"
           cols="12"
           md="4"
           class="pa-6"
@@ -55,7 +55,7 @@
           </div>
 
           <div
-            v-if="frase.autor"
+            v-show="frase.autor"
             class="text-right"
           >
             <strong>({{ frase.autor }})</strong>
@@ -139,13 +139,14 @@ export default {
     }
   }),
 
-  mounted () {
-    this.$axios.get('/frases')
-      .then(({ data }) => {
-        const arrayRandom = Math.floor(Math.random() * data.length)
-        this.frase = data[arrayRandom]
-      })
-      .catch(error => error)
+  async fetch () {
+    try {
+      const { data } = await this.$axios.get('/frases')
+      const arrayRandom = Math.floor(Math.random() * data.length)
+      this.frase = data[arrayRandom]
+    } catch (error) {
+      return error
+    }
   }
 }
 </script>
