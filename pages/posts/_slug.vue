@@ -181,7 +181,7 @@ export default {
         { hid: 'googlebot', name: 'googlebot', content: this.data.subtitle },
         // SEO Twitter
         { name: 'twitter:card', content: 'summary' },
-        { name: 'twitter:image', content: this.data?.image?.url },
+        { name: 'twitter:image', content: this.imageUrl },
         { name: 'twitter:image:alt', content: this.imageUrl },
         { name: 'twitter:site', content: '@alinepontesadvocacia' },
         { name: 'twitter:creator', content: '@alinepontesadvocacia' }
