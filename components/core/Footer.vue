@@ -16,13 +16,13 @@
           <v-list class="transparent">
             <template v-for="(item, index) in items">
               <v-subheader
-                v-show="item.header"
+                v-if="item.header"
                 :key="item.header"
                 v-text="item.header"
               />
 
               <v-divider
-                v-if="item.divider"
+                v-else-if="item.divider"
                 :key="index"
               />
 
@@ -41,7 +41,7 @@
 
         <!-- Coluna frase do dia -->
         <v-col
-          v-show="!$vuetify.breakpoint.sm"
+          v-if="!$vuetify.breakpoint.sm"
           cols="12"
           md="4"
           class="pa-6"
@@ -55,7 +55,7 @@
           </div>
 
           <div
-            v-show="frase.autor"
+            v-if="frase.autor"
             class="text-right"
           >
             <strong>({{ frase.autor }})</strong>

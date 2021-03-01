@@ -32,12 +32,12 @@
                 :key="area.ramo"
                 :elevation="hover ? 24 : 6"
                 class="mt-12 mb-8 pt-16 mt-5"
-                :max-width="$vuetify.breakpoint.width > 1670 ? '350' : '330'"
+                :max-width="$vuetify.breakpoint.width > 1670 ? '350' : '280'"
               >
                 <v-img
                   :src="require(`@/static/images/${area.img}.jpeg`)"
-                  :max-height="$vuetify.breakpoint.lgAndUp ? '220' : '200'"
-                  :min-height="$vuetify.breakpoint.lgAndUp ? '220' : '200'"
+                  :max-height="$vuetify.breakpoint.lgAndUp ? '220' : '170'"
+                  :min-height="$vuetify.breakpoint.lgAndUp ? '220' : '170'"
                   class="max-auto mr-3 ml-3 rounded-lg"
                   style="margin-top: -110px"
                 />

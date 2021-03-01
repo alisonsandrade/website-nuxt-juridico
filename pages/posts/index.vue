@@ -180,19 +180,23 @@ export default {
   }),
 
   async fetch () {
-    try {
-      this.loading = true
-      const response = await this.$axios.get('/posts/count')
-      this.totalPosts = response.data
+    if (this.$route.query.params) {
+      this.pesquisar()
+    } else {
+      try {
+        this.loading = true
+        const response = await this.$axios.get('/posts/count')
+        this.totalPosts = response.data
 
-      const { data } = await this.$axios.get(`/posts?_sort=published_at:DESC&_limit=${this.totalPorPagina}&_start=0`)
-      this.posts = data
+        const { data } = await this.$axios.get(`/posts?_sort=published_at:DESC&_limit=${this.totalPorPagina}&_start=0`)
+        this.posts = data
 
-      this.page = 1
-    } catch (error) {
-      return error
-    } finally {
-      this.loading = false
+        this.page = 1
+      } catch (error) {
+        return error
+      } finally {
+        this.loading = false
+      }
     }
   },
 
@@ -222,6 +226,7 @@ export default {
         value === 'Notícia' ? this.pesquisar() : this.filtrarPorCategoria(this.params)
       }
     },
+
     async page (value) {
       if (value === 1 && this.$route.query.page === 1) {
         return // Não precisa renderizar o método de paginação
@@ -246,14 +251,15 @@ export default {
     }
   },
 
-  mounted () {
-    if (this.$route.query.search) {
-      this.params = this.$route.query.params
-      this.pesquisar()
-    } else {
-      this.$fetch()
-    }
-  },
+  // mounted () {
+  //   if (this.$route.query.search) {
+  //     this.params = this.$route.query.params
+  //     this.pesquisar()
+  //   } else {
+  //     console.log('else do mounted')
+  //     this.$fetch()
+  //   }
+  // },
 
   created () {
     this.$eventBus.$on('pesquisar', ({ search, params }) => {
@@ -311,10 +317,10 @@ export default {
       }
     },
 
-    resetSearch () { // Disparado quando o botão limpar da pesquisa é clicado
+    async resetSearch () { // Disparado quando o botão limpar da pesquisa é clicado
       this.search = null
       this.params = null
-      this.$router.replace({ query: null })
+      await this.$router.replace({ query: null })
       this.page = 1
       this.$fetch()
     }

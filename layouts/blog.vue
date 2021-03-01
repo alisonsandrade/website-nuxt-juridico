@@ -19,10 +19,10 @@
           <base-heading>
             <a
               href="/posts"
-              class="info--text"
+              class="info--text font-weight-regular"
             >Blog | Notícias</a>
           </base-heading>
-          <base-text class="mb-5 black--text">
+          <base-text class="mb-5 black--text font-weight-medium">
             Aline Pontes Advocacia
           </base-text>
         </v-col>
