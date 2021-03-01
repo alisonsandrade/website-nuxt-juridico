@@ -56,18 +56,12 @@ export default {
   },
 
   router: {
-    extendRoutes (routes, resolve) {
+    middleware: 'admin',
+    extendRoutes (routes, resolve) {      
       // routes.push({
       //   name: 'admin',
-      //   path: '/ap-admin'
-      //   // redirect: (to) => {
-      //   //   window.location.href = 'https://api-alinepontes.herokuapp.com/admin'
-      //   //   return '/redirecting' // not important since redirecting
-      //   // }
-      //   // beforeEnter (to) {
-      //   //   console.log('to', to)
-      //   //   window.open('https://api-alinepontes.herokuapp.com/admin', '_blank')
-      //   // }
+      //   path: '/ap-admin',
+      //   redirect: 'https://api-alinepontes.herokuapp.com/admin'
       // })
     }
   },
