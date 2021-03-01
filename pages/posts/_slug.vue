@@ -140,7 +140,8 @@ export default {
     const { data } = await $axios.get(`/posts/${params.slug}`)
     return {
       data,
-      hrefLocation: process.env.baseURL + '/posts/' + data.slug,
+      // hrefLocation: process.env.baseURL + '/posts/' + data.slug,
+      hrefLocation: window.document.location.href,
       imageUrl: data?.image?.url
     }
   },
