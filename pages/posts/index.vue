@@ -323,7 +323,7 @@ export default {
 <style scoped >
 a {
   text-decoration: none !important;
-  color: rgb(94, 20, 21);
+  color: rgb(94, 20, 21) !important;
 }
 a:hover {
   text-decoration: underline !important;

@@ -1,6 +1,7 @@
-# front-nuxt-alinepontes
+# Website Aline Pontes Advocacia
+Projeto de website desenvolvido com VueJS 2.x e Nuxt, conectando a uma API Strapi.
 
-## Build Setup
+## Instalação do projeto
 
 ```bash
 # install dependencies
@@ -17,4 +18,12 @@ $ yarn start
 $ yarn generate
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+## Features
+- Página Index. Página estática com formulário de contato e listagems das 4 últimas postagens;
+- Blog com postagens jurídicas;
+- Página de detalhes dos posts com diversos meios de compartilhamentos nas redes sociais;
+- Plugin Disqus para comentários;
+
+Para mais detalhes sobre o Framework Nuxt utilizado no frontend, visitar [Nuxt.js docs](https://nuxtjs.org).
+
+Site hospedado em [Vercel.app](https://www.vercel.com)
