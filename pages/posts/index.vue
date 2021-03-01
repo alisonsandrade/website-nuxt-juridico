@@ -87,7 +87,7 @@
                 <v-btn
                   class="ml-2 mt-1"
                   small
-                  color="info"
+                  color="info white--text"
                   :to="{ name: 'posts-slug', params: { slug: post.slug }}"
                 >
                   Leia mais
