@@ -32,7 +32,7 @@
                 :key="area.ramo"
                 :elevation="hover ? 24 : 6"
                 class="mt-12 mb-8 pt-16 mt-5"
-                :max-width="$vuetify.breakpoint.width > 1670 ? '350' : '280'"
+                :max-width="$vuetify.breakpoint.width > 1670 ? '350' : '280' && $vuetify.breakpoint.xs ? '100%': '280'"
               >
                 <v-img
                   :src="require(`@/static/images/${area.img}.jpeg`)"

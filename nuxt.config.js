@@ -55,6 +55,23 @@ export default {
     baseURL: process.env.VUE_APP_BASE_URL_API || 'http://10.0.0.105:1337'
   },
 
+  router: {
+    extendRoutes (routes, resolve) {
+      // routes.push({
+      //   name: 'admin',
+      //   path: '/ap-admin'
+      //   // redirect: (to) => {
+      //   //   window.location.href = 'https://api-alinepontes.herokuapp.com/admin'
+      //   //   return '/redirecting' // not important since redirecting
+      //   // }
+      //   // beforeEnter (to) {
+      //   //   console.log('to', to)
+      //   //   window.open('https://api-alinepontes.herokuapp.com/admin', '_blank')
+      //   // }
+      // })
+    }
+  },
+
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
