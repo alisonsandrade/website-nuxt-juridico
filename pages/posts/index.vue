@@ -321,12 +321,6 @@ export default {
 </script>
 
 <style scoped >
-.disqus-count {
-  color: rgb(94, 20, 21);
-}
-.disqus-count:hover {
-  color: rgb(109, 109, 109);
-}
 a {
   text-decoration: none !important;
   color: rgb(94, 20, 21);
@@ -335,11 +329,6 @@ a:hover {
   text-decoration: underline !important;
 }
 .v-card__subtitle {
-  /* width: 100%;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-  overflow: hidden; */
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;

@@ -136,12 +136,13 @@ export default {
 
   layout: 'blog',
 
-  async asyncData ({ params, $axios }) {
+  async asyncData ({ env, route, params, $axios }) {
+    console.log('env', env)
+    console.log('route', route)
     const { data } = await $axios.get(`/posts/${params.slug}`)
     return {
       data,
-      // hrefLocation: process.env.baseURL + '/posts/' + data.slug,
-      hrefLocation: window.document.location.href,
+      hrefLocation: process.env.baseURL + route.path,
       imageUrl: data?.image?.url
     }
   },
