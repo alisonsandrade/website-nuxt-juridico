@@ -287,7 +287,7 @@ export default {
       } catch (error) {
         return error
       } finally {
-        this.$emit('filtrar-categoria', categoria.nome)
+        // this.$emit('filtrar-categoria', categoria.nome)
       }
     },
 

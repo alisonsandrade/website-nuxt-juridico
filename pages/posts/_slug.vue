@@ -79,7 +79,7 @@
               twitter-user="alinepontesadvocacia"
             >
               <i :class="network.icon" />
-              <span v-if="$vuetify.breakpoint.smAndUp">{{ network.name }}</span>
+              <span v-show="$vuetify.breakpoint.smAndUp">{{ network.name }}</span>
             </ShareNetwork>
           </div>
 

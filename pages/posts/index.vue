@@ -1,11 +1,11 @@
 <template>
   <div>
-    <v-row v-if="$fetchState.pending">
+    <v-row v-show="$fetchState.pending">
       <p class="pa-2">
         Carregando os dados. Aguarde...
       </p>
     </v-row>
-    <v-row v-else class="mt-6 text-justify">
+    <v-row class="mt-6 text-justify">
       <v-col
         cols="12"
         md="8"
@@ -13,7 +13,7 @@
         xl="9"
       >
         <post-search
-          v-if="$route.query.search || search"
+          v-show="$route.query.search || search"
           class="pa-4 mb-4"
           :search="$route.query.search || search"
           :params="$route.query.params || params"
@@ -115,7 +115,7 @@
 
         <!-- Paginação -->
         <div
-          v-if="posts.length > 0"
+          v-show="posts.length > 0"
           class="text-center"
         >
           <v-pagination
@@ -127,7 +127,7 @@
 
         <!-- Alerta para pesquisa não localizada -->
         <v-alert
-          v-if="posts.length === 0 && !$fetchState.pending"
+          v-show="posts.length === 0 && !$fetchState.pending"
           color="secondary"
           dark
           icon="mdi-file-search"
@@ -180,8 +180,9 @@ export default {
   }),
 
   async fetch () {
-    if (this.$route.query.params) {
-      this.pesquisar()
+    if (this.$route.query.search) {
+      this.params = this.$route.query.params
+      this.search = this.$route.query.search
     } else {
       try {
         this.loading = true
@@ -251,16 +252,6 @@ export default {
     }
   },
 
-  // mounted () {
-  //   if (this.$route.query.search) {
-  //     this.params = this.$route.query.params
-  //     this.pesquisar()
-  //   } else {
-  //     console.log('else do mounted')
-  //     this.$fetch()
-  //   }
-  // },
-
   created () {
     this.$eventBus.$on('pesquisar', ({ search, params }) => {
       this.search = search
@@ -284,8 +275,9 @@ export default {
     },
 
     async filtrarPorCategoria (nomeCategoria) {
-      this.overlay = true
       try {
+        this.overlay = true
+
         const response = await this.$axios.get(`/posts/count?categorias.nome=${nomeCategoria}&_sort=published_at:DESC`)
         this.totalPosts = response.data
 

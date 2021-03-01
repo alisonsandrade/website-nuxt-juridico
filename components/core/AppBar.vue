@@ -9,7 +9,7 @@
       :flat="!isScrolling ? true : false"
     >
       <v-app-bar-nav-icon
-        v-if="$vuetify.breakpoint.smAndDown"
+        v-show="$vuetify.breakpoint.smAndDown"
         @click.stop="sheet = !sheet"
       />
 
@@ -28,7 +28,7 @@
         </v-col>
 
         <v-col
-          v-if="$vuetify.breakpoint.mdAndUp"
+          v-show="$vuetify.breakpoint.mdAndUp"
           cols="8"
         >
           <div class="text-center">
@@ -138,7 +138,7 @@
 
     <v-fab-transition>
       <v-btn
-        v-if="isScrolling"
+        v-show="isScrolling"
         key="mdi-chevron-up"
         color="info"
         fab
