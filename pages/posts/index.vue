@@ -202,7 +202,12 @@ export default {
   },
 
   head: {
-    title: 'Blog de Notícia - Aline Pontes Advocacia'
+    title: 'Blog de Notícia - Aline Pontes Advocacia',
+    meta: [
+      // SEO Google
+      { hid: 'description', name: 'description', content: 'Blog de notícias jurídicas do site Aline Pontes Advocacia. Esteja informado sobre as principais decisões judiciais e seus impactos no dia-a-dia do consumidor, cidadão ou segurado do INSS. ' },
+      { hid: 'googlebot', name: 'googlebot', content: 'Blog de notícias jurídicas do site Aline Pontes Advocacia. Esteja informado sobre as principais decisões judiciais e seus impactos no dia-a-dia do consumidor, cidadão ou segurado do INSS. ' }
+    ]
   },
 
   computed: {
