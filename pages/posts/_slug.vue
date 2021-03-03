@@ -139,10 +139,11 @@ export default {
   async asyncData ({ env, route, params, $axios }) {
     try {
       const { data } = await $axios.get(`/posts/${params.slug}`)
+      const imageDefault = require('@/static/images/logo_aline1.png')
       return {
         data,
         hrefLocation: env.baseURL + route.path,
-        imageUrl: data?.image?.url
+        imageUrl: data?.image?.url || imageDefault
       }
     } catch (error) {
       error(error)

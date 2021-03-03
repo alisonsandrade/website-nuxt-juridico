@@ -187,7 +187,7 @@ export default {
       try {
         this.loading = true
         const response = await this.$axios.get('/posts/count')
-        this.totalPosts = response.data
+        this.totalPages = response.data
 
         const { data } = await this.$axios.get(`/posts?_sort=published_at:DESC&_limit=${this.totalPorPagina}&_start=0`)
         this.posts = data
@@ -211,8 +211,13 @@ export default {
   },
 
   computed: {
-    totalPages () {
-      return Math.ceil(this.totalPosts / this.totalPorPagina)
+    totalPages: {
+      get () {
+        return Math.ceil(this.totalPosts / this.totalPorPagina)
+      },
+      set (totalPosts) {
+        this.totalPosts = totalPosts
+      }
     }
   },
 
@@ -284,7 +289,7 @@ export default {
         this.overlay = true
 
         const response = await this.$axios.get(`/posts/count?categorias.nome=${nomeCategoria}&_sort=published_at:DESC`)
-        this.totalPosts = response.data
+        this.totalPages = response.data
 
         const { data } = await this.$axios.get(`/posts?categorias.nome=${nomeCategoria}&_sort=published_at:DESC&_limit=${this.totalPorPagina}&_start=0`)
         this.posts = data
@@ -301,7 +306,7 @@ export default {
       this.overlay = true
       try {
         const response = await this.$axios.get(`/posts/count?&title_contains=${this.params || this.$route.query.params}`)
-        this.totalPosts = response.data
+        this.totalPages = response.data
 
         const { data } = await this.$axios.get(`/posts?_sort=published_at:DESC&_limit=${this.totalPorPagina}&_start=0&title_contains=${this.params || this.$route.query.params}`)
         this.posts = data
