@@ -33,8 +33,8 @@
               Serviços
             </base-heading>
 
-            <base-text class="mb-5">
-              Nosso escritório de Advocacia está a sua disposição para lhe atender<br>
+            <base-text class="mb-5" :class="{ 'pl-16 pr-16': $vuetify.breakpoint.mdAndUp }">
+              Nosso escritório de Advocacia está a sua disposição para lhe atender
               na prestação dos seguintes serviços, dentre outros:
             </base-text>
           </v-col>
@@ -60,7 +60,7 @@
 
             <base-text>
               <div
-                class="mb-2"
+                class="mb-2 font-weight-medium"
                 v-text="service.name"
               />
               <div>{{ service.blurb }}</div>
