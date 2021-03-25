@@ -136,7 +136,7 @@ export default {
 
   layout: 'blog',
 
-  async asyncData ({ env, route, params, $axios }) {
+  async asyncData ({ env, route, params, $axios, error }) {
     try {
       const { data } = await $axios.get(`/posts/${params.slug}`)
       const imageDefault = require('@/static/images/logo_aline1.png')
@@ -145,8 +145,8 @@ export default {
         hrefLocation: env.baseURL + route.path,
         imageUrl: data?.image?.url || imageDefault
       }
-    } catch (error) {
-      error(error)
+    } catch (e) {
+      error(e)
     }
   },
 
@@ -159,7 +159,7 @@ export default {
       { network: 'facebook', name: 'Facebook', icon: 'fab fah fa-lg fa-facebook-f', color: '#1877f2' },
       { network: 'linkedin', name: 'LinkedIn', icon: 'fab fah fa-lg fa-linkedin', color: '#007bb5' },
       // { network: 'pinterest', name: 'Pinterest', icon: 'fab fah fa-lg fa-pinterest', color: '#bd081c' },
-      // { network: 'reddit', name: 'Reddit', icon: 'fab fah fa-lg fa-reddit-alien', color: '#ff4500' },
+      // { network: 'red709349dit', name: 'Reddit', icon: 'fab fah fa-lg fa-reddit-alien', color: '#ff4500' },
       { network: 'telegram', name: 'Telegram', icon: 'fab fah fa-lg fa-telegram-plane', color: '#0088cc' },
       // { network: 'tumblr', name: 'Tumblr', icon: 'fab fah fa-lg fa-tumblr', color: '#35465c' },
       { network: 'twitter', name: 'Twitter', icon: 'fab fah fa-lg fa-twitter', color: '#1da1f2' },
@@ -168,26 +168,26 @@ export default {
     ]
   }),
 
-  head () {
+  head ({ data, imageUrl, hrefLocation }) {
     return {
-      title: `Artigo: ${this.data.title}`,
+      title: `Artigo: ${data.title}`,
       titleTemplate: '%s | Aline Pontes Advocacia',
       meta: [
         // SEO Facebook
-        { hid: 'og:title', property: 'og:title', content: this.data.title },
+        { hid: 'og:title', property: 'og:title', content: data.title },
         { hid: 'og:site_name', property: 'og:site_name', content: 'Aline Pontes Advocacia' },
-        { hid: 'og:description', property: 'og:description', content: 'Aline Pontes Advocacia | Site Jurídico. Post - ' + this.data.subtitle },
+        { hid: 'og:description', property: 'og:description', content: 'Aline Pontes Advocacia | Site Jurídico. Post - ' + data.subtitle },
         { hid: 'og:type', property: 'og:type', content: 'article' },
-        { hid: 'og:url', property: 'og:url', content: this.hrefLocation },
-        { hid: 'og:image', property: 'og:image', content: this.imageUrl },
+        { hid: 'og:url', property: 'og:url', content: hrefLocation },
+        { hid: 'og:image', property: 'og:image', content: imageUrl },
         // SEO Google
-        { hid: 'title', name: 'title', content: `Artigo: ${this.data.title}` },
-        { hid: 'description', name: 'description', content: this.data.subtitle },
-        { hid: 'googlebot', name: 'googlebot', content: this.data.subtitle },
+        { hid: 'title', name: 'title', content: `Artigo: ${data.title}` },
+        { hid: 'description', name: 'description', content: data.subtitle },
+        { hid: 'googlebot', name: 'googlebot', content: data.subtitle },
         // SEO Twitter
         { name: 'twitter:card', content: 'summary' },
-        { name: 'twitter:image', content: this.imageUrl },
-        { name: 'twitter:image:alt', content: this.imageUrl },
+        { name: 'twitter:image', content: imageUrl },
+        { name: 'twitter:image:alt', content: imageUrl },
         { name: 'twitter:site', content: '@alinepontesadvocacia' },
         { name: 'twitter:creator', content: '@alinepontesadvocacia' }
       ]
