@@ -17,13 +17,22 @@ export default {
     },
     image: {
       type: String,
-      default: '@/static/images/parallax.jpg'
+      default: 'https://i.ibb.co/nj2jSSg/logo-aline3.png'
+    },
+    url: {
+      type: String,
+      default: 'https://www.alinepontes.adv.br'
     }
   },
 
   head () {
     return {
       meta: [
+        {
+          hid: 'twitter:card',
+          name: 'twitter:card', 
+          content: 'summary' 
+        },
         {
           hid: 'twitter:title',
           name: 'twitter:title',
@@ -62,7 +71,7 @@ export default {
         {
           hid: 'og:description',
           property: 'og:description',
-          content: this.description
+          content: 'Aline Pontes Advocacia | Site Jurídico. Post - ' + this.description
         },
         {
           hid: 'og:image',
@@ -78,7 +87,17 @@ export default {
           hid: 'og:image:alt',
           property: 'og:image:alt',
           content: this.title
-        }
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: this.url
+        },
+        {
+          hid: 'og:type',
+          property: 'og:type',
+          content: 'article'
+        },
       ]
     }
   }

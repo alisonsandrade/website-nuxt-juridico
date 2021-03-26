@@ -4,6 +4,7 @@
       :title="data.title"
       :description="data.subtitle"
       :image="imageUrl"
+      :url="hrefLocation"
     />
     <!-- Link do Social Media -->
     <link
@@ -25,8 +26,6 @@
           :loading="loading"
           style="border-top: 3px solid rgb(94,20,21);"
         >
-          <!-- <v-card-title class="pa-4 info--text text-h4 font-weight-medium">{{ post.title }}</v-card-title> -->
-
           <v-card-text class="text-justify">
             <base-heading class="info--text text-h4 font-weight-medium">
               {{ data.title }}
