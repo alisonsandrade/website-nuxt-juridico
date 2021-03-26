@@ -1,5 +1,5 @@
 <template>
-  <span v-if="true" />
+  <span v-if="false" />
 </template>
 
 <script>
@@ -17,7 +17,7 @@ export default {
     },
     image: {
       type: String,
-      default: 'https://nuxtjs.org/nuxt-card.png'
+      default: '@/static/images/parallax.jpg'
     }
   },
 
@@ -43,6 +43,16 @@ export default {
           hid: 'twitter:image:alt',
           name: 'twitter:image:alt',
           content: this.title
+        },
+        {
+          hid: 'twitter:site',
+          name: 'twitter:site',
+          content: '@alinepontesadvocacia'
+        },
+        {
+          hid: 'twitter:creator',
+          name: 'twitter:creator',
+          content: '@alinepontesadvocacia'
         },
         {
           hid: 'og:title',

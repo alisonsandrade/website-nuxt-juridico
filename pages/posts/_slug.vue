@@ -1,5 +1,10 @@
 <template>
   <article>
+    <SocialHead
+      :title="data.title"
+      :description="data.subtitle"
+      :image="imageUrl"
+    />
     <!-- Link do Social Media -->
     <link
       rel="stylesheet"
@@ -83,12 +88,6 @@
             </ShareNetwork>
           </div>
 
-          <SocialHead
-            :title="data.title"
-            :description="data.subtitle"
-            :image="imageUrl"
-          />
-
           <v-card-text
             class="blue-grey lighten-4"
             style="width: 90%; margin: 0 auto;"
@@ -168,36 +167,11 @@ export default {
     ]
   }),
 
-  head ({ data, imageUrl, hrefLocation }) {
-    return {
-      title: `Artigo: ${data.title}`,
-      titleTemplate: '%s | Aline Pontes Advocacia',
-      meta: [
-        // SEO Facebook
-        { hid: 'og:title', property: 'og:title', content: data.title },
-        { hid: 'og:site_name', property: 'og:site_name', content: 'Aline Pontes Advocacia' },
-        { hid: 'og:description', property: 'og:description', content: 'Aline Pontes Advocacia | Site Jurídico. Post - ' + data.subtitle },
-        { hid: 'og:type', property: 'og:type', content: 'article' },
-        { hid: 'og:url', property: 'og:url', content: hrefLocation },
-        { hid: 'og:image', property: 'og:image', content: imageUrl },
-        // SEO Google
-        { hid: 'title', name: 'title', content: `Artigo: ${data.title}` },
-        { hid: 'description', name: 'description', content: data.subtitle },
-        { hid: 'googlebot', name: 'googlebot', content: data.subtitle },
-        // SEO Twitter
-        { name: 'twitter:card', content: 'summary' },
-        { name: 'twitter:image', content: imageUrl },
-        { name: 'twitter:image:alt', content: imageUrl },
-        { name: 'twitter:site', content: '@alinepontesadvocacia' },
-        { name: 'twitter:creator', content: '@alinepontesadvocacia' }
-      ]
-    }
-  },
-
   watch: {
-    async $route (to, from) {
+    $route (to, from) {
       if (to.name === from.name) {
-        this.data = await this.reloadPost(to.params.slug)
+        // this.data = await this.reloadPost(to.params.slug)
+        this.$nuxt.refresh()
       }
     }
   },
