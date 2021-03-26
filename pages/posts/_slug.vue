@@ -134,14 +134,25 @@ export default {
 
   layout: 'blog',
 
-  async asyncData ({ env, route, params, $axios, error }) {
+  async asyncData ({ app, env, route, params, $axios, error }) {
     try {
-      const { data } = await $axios.get(`/posts/${params.slug}`)
+      const post = (await $axios.get(`/posts/${params.slug}`)).data
       const imageDefault = require('@/static/images/logo_aline1.png')
+      const hrefLocation = env.baseURL + route.path
+      const imageUrl = post?.image?.url || imageDefault
+
+      app.head.meta.push(
+        { hid: 'og:title', content: post.title, property: 'og:title' },
+        { hid: 'og:type', content: 'article', property: 'og:type' },
+        { hid: 'og:description', content: post.subtitle, property: 'og:description' },
+        { hid: 'og:url', content: hrefLocation, property: 'og:url' },
+        { hid: 'og:image', content: imageUrl, property: 'og:image' }
+      )
+
       return {
-        post: data,
-        hrefLocation: env.baseURL + route.path,
-        imageUrl: data?.image?.url || imageDefault
+        post,
+        hrefLocation,
+        imageUrl
       }
     } catch (e) {
       error(e)
@@ -165,48 +176,6 @@ export default {
       { network: 'whatsapp', name: 'Whatsapp', icon: 'fab fah fa-lg fa-whatsapp', color: '#25d366' }
     ]
   }),
-
-  computed: {
-    title() {
-      if (this.post) return this.post.title
-      return 'Postagem jurídica - Aline Pontes Advocacia'
-    },
-    description() {
-      if (this.post) return this.post.subtitle
-      return 'Leia mais sobre a postagem jurídica no site Aline Pontes Advocacia'
-    },
-    url() {
-      return process.env.baseURL + this.$route.fullPath
-    }
-  },
-
-  head() {
-    return {
-      title: this.title,
-      meta: [
-        {
-          hid: 'description',
-          content: this.description,
-          name: 'description'
-        },
-        {
-          hid: 'og:title',
-          content: this.title,
-          property: 'og:title'
-        },
-        {
-          hid: 'og:description',
-          content: this.description,
-          property: 'og:description'
-        },
-        {
-          hid: 'og:url',
-          content: this.url,
-          property: 'og:url'
-        }
-      ]
-    }
-  },
 
   watch: {
     $route (to, from) {

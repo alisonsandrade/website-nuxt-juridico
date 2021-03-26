@@ -172,32 +172,25 @@ export default {
     loading: false,
     overlay: false,
     search: '', // Parâmetro principal da pesquisa
-    params: '', // Parâmetro secundário
-    page: 1,
-    totalPorPagina: 5,
-    totalPosts: 0,
-    posts: []
+    params: '' // Parâmetro secundário
   }),
 
-  async fetch () {
+  async asyncData ({ $axios, error }) {
+    try {
+      const page = 1
+      const totalPorPagina = 5
+      const totalPosts = (await $axios.get('/posts/count')).data
+      const posts = (await $axios.get(`/posts?_sort=published_at:DESC&_limit=${totalPorPagina}&_start=0`)).data
+      return { page, totalPorPagina, totalPosts, posts }
+    } catch (e) {
+      error(e)
+    }
+  },
+
+  fetch () {
     if (this.$route.query.search) {
       this.params = this.$route.query.params
       this.search = this.$route.query.search
-    } else {
-      try {
-        this.loading = true
-        const response = await this.$axios.get('/posts/count')
-        this.totalPages = response.data
-
-        const { data } = await this.$axios.get(`/posts?_sort=published_at:DESC&_limit=${this.totalPorPagina}&_start=0`)
-        this.posts = data
-
-        this.page = 1
-      } catch (error) {
-        return error
-      } finally {
-        this.loading = false
-      }
     }
   },
 
@@ -324,7 +317,7 @@ export default {
       this.params = null
       await this.$router.replace({ query: null })
       this.page = 1
-      this.$fetch()
+      this.$nuxt.refresh()
     }
   }
 }
