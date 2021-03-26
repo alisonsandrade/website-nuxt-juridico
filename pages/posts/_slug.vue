@@ -123,14 +123,13 @@
 </template>
 
 <script>
+import SocialHead from '@/components/SocialHead'
+import SideBar from '@/components/SideBar'
 
 export default {
   name: 'PostDetail',
 
-  components: {
-    SideBar: () => import('@/components/SideBar'),
-    SocialHead: () => import('@/components/SocialHead')
-  },
+  components: { SideBar, SocialHead },
 
   layout: 'blog',
 

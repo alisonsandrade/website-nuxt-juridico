@@ -31,48 +31,36 @@
           v-show="$vuetify.breakpoint.mdAndUp"
           cols="8"
         >
-          <div class="text-center">
-            <v-btn
-              class="ma-1"
-              text
-              :color="!isScrolling ? 'info' : 'primary'"
-              to="/#area-atuacao"
-            >
-              Área de Atuação
-            </v-btn>
-            <v-btn
-              class="ma-1"
-              text
-              :color="!isScrolling ? 'info' : 'primary'"
-              to="/#services"
-            >
-              Serviços
-            </v-btn>
-            <v-btn
-              class="ma-1"
-              text
-              :color="!isScrolling ? 'info' : 'primary'"
-              to="/posts"
-            >
-              Notícias
-            </v-btn>
-            <v-btn
-              class="ma-1"
-              text
-              :color="!isScrolling ? 'info' : 'primary'"
-              to="/#about"
-            >
-              Sobre nós
-            </v-btn>
-            <v-btn
-              class="ma-1"
-              text
-              :color="!isScrolling ? 'info' : 'primary'"
-              to="/#get-in-touch"
-            >
-              Contato
-            </v-btn>
-          </div>
+          <ul
+            class="d-flex ma-1"
+            :class="$vuetify.breakpoint.lgAndUp ? 'justify-center' : 'justify-space-between'"
+          >
+            <li>
+              <nuxt-link :class="!isScrolling ? 'info--text' : 'primary--text'" to="/#area-atuacao">
+                Área de Atuação
+              </nuxt-link>
+            </li>
+            <li>
+              <nuxt-link :class="!isScrolling ? 'info--text' : 'primary--text'" to="/#services">
+                Serviços
+              </nuxt-link>
+            </li>
+            <li>
+              <nuxt-link :class="!isScrolling ? 'info--text' : 'primary--text'" to="/posts">
+                Notícias
+              </nuxt-link>
+            </li>
+            <li>
+              <nuxt-link :class="!isScrolling ? 'info--text' : 'primary--text'" to="/#about">
+                Sobre nós
+              </nuxt-link>
+            </li>
+            <li>
+              <nuxt-link :class="!isScrolling ? 'info--text' : 'primary--text'" to="/#get-in-touch">
+                Contato
+              </nuxt-link>
+            </li>
+          </ul>
         </v-col>
       </v-row>
     </v-app-bar>
@@ -187,8 +175,25 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style>
 .v-navigation-drawer {
   background-color: rgba(219, 219, 219, 0.9) !important;
+}
+li a {
+  padding: 0.5em 2.0em;
+  display: inline-block;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+  font-size: .9em;
+}
+ul {
+  list-style-type: none;
+}
+li a:hover {
+  padding: 0.5em 2.0em;
+  display: inline-block;
+  background: rgba(0,0,0,0.1);
 }
 </style>

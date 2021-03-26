@@ -17,17 +17,23 @@
 </template>
 
 <script>
+import Welcome from '@/components/Welcome'
+import AreaAtuacao from '@/components/AreaAtuacao'
+import Services from '@/components/Services'
+import Blog from '@/components/Blog'
+import AboutMe from '@/components/AboutMe'
+import GetInTouch from '@/components/GetInTouch'
+
 export default {
   name: 'CoreView',
 
   components: {
-    Welcome: () => import('@/components/Welcome'),
-    AreaAtuacao: () => import('@/components/AreaAtuacao'),
-    Services: () => import('@/components/Services'),
-    Blog: () => import('@/components/Blog'),
-    AboutMe: () => import('@/components/AboutMe'),
-    GetInTouch: () => import('@/components/GetInTouch')
-    // SocialMediaBanner: () => import('@/components/SocialMediaBanner')
+    Welcome,
+    AreaAtuacao,
+    Services,
+    Blog,
+    AboutMe,
+    GetInTouch
   }
 }
 </script>
