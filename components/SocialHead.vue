@@ -71,7 +71,7 @@ export default {
         {
           hid: 'og:description',
           property: 'og:description',
-          content: 'Aline Pontes Advocacia | Site Jurídico. Post - ' + this.description
+          content: this.description
         },
         {
           hid: 'og:image',

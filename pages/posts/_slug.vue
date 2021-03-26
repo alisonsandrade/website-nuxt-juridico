@@ -1,8 +1,8 @@
 <template>
   <article>
     <SocialHead
-      :title="data.title"
-      :description="data.subtitle"
+      :title="post.title"
+      :description="post.subtitle"
       :image="imageUrl"
       :url="hrefLocation"
     />
@@ -28,7 +28,7 @@
         >
           <v-card-text class="text-justify">
             <base-heading class="info--text text-h4 font-weight-medium">
-              {{ data.title }}
+              {{ post.title }}
             </base-heading>
 
             <v-card-subtitle style="border-top: rgb(94,20,21) 1px dotted; border-bottom: rgb(94,20,21) 1px dotted;">
@@ -40,7 +40,7 @@
                   mdi-calendar-text
                 </v-icon>
 
-                <span class="font-weight-light">{{ new Date(data.published_at).toLocaleString() }}</span>
+                <span class="font-weight-light">{{ new Date(post.published_at).toLocaleString() }}</span>
 
                 <v-icon
                   left
@@ -49,7 +49,7 @@
                   mdi-clipboard-account-outline
                 </v-icon>
 
-                <span class="font-weight-light">Por {{ getAuthor(data) }}</span>
+                <span class="font-weight-light">Por {{ getAuthor(post) }}</span>
 
                 <v-icon
                   left
@@ -76,10 +76,10 @@
               :network="network.network"
               :style="{backgroundColor: network.color}"
               :url="hrefLocation"
-              :title="data.title"
-              :description="data.subtitle"
-              :quote="data.subtitle"
-              :hashtags="data.categorias ? data.categorias.map(cat => cat.nome).join(',') : 'direito'"
+              :title="post.title"
+              :description="post.subtitle"
+              :quote="post.subtitle"
+              :hashtags="post.categorias ? post.categorias.map(cat => cat.nome).join(',') : 'direito'"
               twitter-user="alinepontesadvocacia"
             >
               <i :class="network.icon" />
@@ -92,19 +92,19 @@
             style="width: 90%; margin: 0 auto;"
           >
             <p class="font-italic text-justify">
-              {{ data.subtitle }}
+              {{ post.subtitle }}
             </p>
           </v-card-text>
 
-          <v-card-text v-html="data.content" />
+          <v-card-text v-html="post.content" />
 
           <div class="pa-4">
             <Disqus
               ref="disqus"
               lang="pt_BR"
               :url="hrefLocation"
-              :title="data.title"
-              :slug="data.slug"
+              :title="post.title"
+              :slug="post.slug"
               @new-comment="newComment"
             />
           </div>
@@ -139,7 +139,7 @@ export default {
       const { data } = await $axios.get(`/posts/${params.slug}`)
       const imageDefault = require('@/static/images/logo_aline1.png')
       return {
-        data,
+        post: data,
         hrefLocation: env.baseURL + route.path,
         imageUrl: data?.image?.url || imageDefault
       }
@@ -166,6 +166,48 @@ export default {
     ]
   }),
 
+  computed: {
+    title() {
+      if (this.post) return this.post.title
+      return 'Postagem jurídica - Aline Pontes Advocacia'
+    },
+    description() {
+      if (this.post) return this.post.subtitle
+      return 'Leia mais sobre a postagem jurídica no site Aline Pontes Advocacia'
+    },
+    url() {
+      return process.env.baseURL + this.$route.fullPath
+    }
+  },
+
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        {
+          hid: 'description',
+          content: this.description,
+          name: 'description'
+        },
+        {
+          hid: 'og:title',
+          content: this.title,
+          property: 'og:title'
+        },
+        {
+          hid: 'og:description',
+          content: this.description,
+          property: 'og:description'
+        },
+        {
+          hid: 'og:url',
+          content: this.url,
+          property: 'og:url'
+        }
+      ]
+    }
+  },
+
   watch: {
     $route (to, from) {
       if (to.name === from.name) {
@@ -186,9 +228,9 @@ export default {
       }
     },
 
-    getAuthor (data) {
-      if (data.author) {
-        return data.author.name ? data.author.name : data.author.username
+    getAuthor (post) {
+      if (post.author) {
+        return post.author.name ? post.author.name : post.author.username
       }
       return 'Anônimo'
     },
@@ -196,8 +238,8 @@ export default {
     async reloadPost (slug) {
       try {
         this.loading = true
-        const { data } = await this.$axios.get(`/posts/${slug}`)
-        return data
+        const post = (await this.$axios.get(`/posts/${slug}`)).data
+        return post
       } catch (error) {
         return error
       } finally {

@@ -2,6 +2,10 @@ import colors from 'vuetify/es5/util/colors'
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  target: 'server',
+
+  ssr: true,
+
   head: {
     titleTemplate: '%s - Assessoria & Consultoria Jurídica',
     title: 'Aline Pontes Advocacia',
@@ -11,7 +15,8 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Website jurídico do escritório de advocacia Aline Pontes Advocacia (Guarabira/PB) com informações jurídicas atualizadas sobre as principais decisões judiciais dos Tribunais.' }
+      { hid: 'description', name: 'description', content: 'Website jurídico do escritório de advocacia Aline Pontes Advocacia (Guarabira/PB) com informações jurídicas atualizadas sobre as principais decisões judiciais dos Tribunais.' },
+      { hid: 'og:type', property: 'og:type', content: 'website' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
