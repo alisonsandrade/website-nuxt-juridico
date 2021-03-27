@@ -6,6 +6,8 @@
 // Test on: https://cards-dev.twitter.com/validator
 // Test on: https://developers.facebook.com/tools/debug/
 export default {
+  name: 'SocialHead',
+
   props: {
     title: {
       type: String,
@@ -30,28 +32,28 @@ export default {
       meta: [
         {
           hid: 'twitter:card',
-          name: 'twitter:card', 
-          content: 'summary' 
+          name: 'twitter:card',
+          content: 'summary'
         },
         {
           hid: 'twitter:title',
           name: 'twitter:title',
-          content: this.title
+          content: this.$store.state.ogTitle || this.title
         },
         {
           hid: 'twitter:description',
           name: 'twitter:description',
-          content: this.description
+          content: this.$store.state.ogDescription || this.description
         },
         {
           hid: 'twitter:image',
           name: 'twitter:image',
-          content: this.image
+          content: this.$store.state.ogImage || this.image
         },
         {
           hid: 'twitter:image:alt',
           name: 'twitter:image:alt',
-          content: this.title
+          content: this.$store.state.ogTitle || this.title
         },
         {
           hid: 'twitter:site',
@@ -66,38 +68,38 @@ export default {
         {
           hid: 'og:title',
           property: 'og:title',
-          content: this.title
+          content: this.$store.state.ogTitle || this.title
         },
         {
           hid: 'og:description',
           property: 'og:description',
-          content: this.description
+          content: this.$store.state.ogDescription || this.description
         },
         {
           hid: 'og:image',
           property: 'og:image',
-          content: this.image
+          content: this.$store.state.ogImage || this.image
         },
         {
           hid: 'og:image:secure_url',
           property: 'og:image:secure_url',
-          content: this.image
+          content: this.$store.state.ogImage || this.image
         },
         {
           hid: 'og:image:alt',
           property: 'og:image:alt',
-          content: this.title
+          content: this.$store.state.ogTitle || this.title
         },
         {
           hid: 'og:url',
           property: 'og:url',
-          content: this.url
+          content: this.$store.state.ogUrl || this.url
         },
         {
           hid: 'og:type',
           property: 'og:type',
           content: 'article'
-        },
+        }
       ]
     }
   }

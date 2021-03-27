@@ -6,7 +6,6 @@ export const state = () => ({
 })
 
 export const mutations = {
-  
   setOgTitle (state, title) {
     state.ogTitle = title
   },

@@ -133,20 +133,18 @@ export default {
 
   layout: 'blog',
 
-  async asyncData ({ app, env, route, params, $axios, error }) {
+  async asyncData ({ app, env, route, params, $axios, error, store }) {
     try {
       const post = (await $axios.get(`/posts/${params.slug}`)).data
       const imageDefault = require('@/static/images/logo_aline1.png')
       const hrefLocation = env.baseURL + route.path
       const imageUrl = post?.image?.url || imageDefault
 
-      app.head.meta.push(
-        { hid: 'og:title', content: post.title, property: 'og:title' },
-        { hid: 'og:type', content: 'article', property: 'og:type' },
-        { hid: 'og:description', content: post.subtitle, property: 'og:description' },
-        { hid: 'og:url', content: hrefLocation, property: 'og:url' },
-        { hid: 'og:image', content: imageUrl, property: 'og:image' }
-      )
+      // Setando os valores do SEO
+      store.commit('setOgTitle', post.title)
+      store.commit('setOgDescription', post.subtitle)
+      store.commit('setOgImage', post.imageUrl)
+      store.commit('setOgUrl', post.hrefLocation)
 
       return {
         post,

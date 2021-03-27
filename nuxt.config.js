@@ -2,9 +2,9 @@ import colors from 'vuetify/es5/util/colors'
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
-  target: 'server',
+  // target: 'server',
 
-  ssr: true,
+  // ssr: true,
 
   head: {
     titleTemplate: '%s - Assessoria & Consultoria Jurídica',
@@ -111,8 +111,14 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/google-analytics'
   ],
+
+  googleAnalytics: {
+    id: process.env.ID_GOOGLE_ANALYTICS,
+    dev: false
+  },
 
   env: {
     baseURL: process.env.BASE_URL || 'http://localhost:3000'
