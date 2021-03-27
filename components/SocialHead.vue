@@ -81,6 +81,16 @@ export default {
           content: this.$store.state.ogImage || this.image
         },
         {
+          hid: 'og:image:width',
+          property: 'og:image:width',
+          content: '800'
+        },
+        {
+          hid: 'og:image:height',
+          property: 'og:image:height',
+          content: '315'
+        },
+        {
           hid: 'og:image:secure_url',
           property: 'og:image:secure_url',
           content: this.$store.state.ogImage || this.image

@@ -3,7 +3,7 @@
     <SocialHead
       :title="post.title"
       :description="post.subtitle"
-      :image="imageUrl"
+      :image="image"
       :url="hrefLocation"
     />
     <!-- Link do Social Media -->
@@ -133,23 +133,23 @@ export default {
 
   layout: 'blog',
 
-  async asyncData ({ app, env, route, params, $axios, error, store }) {
+  async asyncData ({ env, route, params, $axios, error, store }) {
     try {
       const post = (await $axios.get(`/posts/${params.slug}`)).data
       const imageDefault = require('@/static/images/logo_aline1.png')
       const hrefLocation = env.baseURL + route.path
-      const imageUrl = post?.image?.url || imageDefault
+      const image = post?.image?.url || imageDefault
 
       // Setando os valores do SEO
       store.commit('setOgTitle', post.title)
       store.commit('setOgDescription', post.subtitle)
-      store.commit('setOgImage', post.imageUrl)
-      store.commit('setOgUrl', post.hrefLocation)
+      store.commit('setOgImage', image)
+      store.commit('setOgUrl', hrefLocation)
 
       return {
         post,
         hrefLocation,
-        imageUrl
+        image
       }
     } catch (e) {
       error(e)
@@ -199,18 +199,6 @@ export default {
         return post.author.name ? post.author.name : post.author.username
       }
       return 'Anônimo'
-    },
-
-    async reloadPost (slug) {
-      try {
-        this.loading = true
-        const post = (await this.$axios.get(`/posts/${slug}`)).data
-        return post
-      } catch (error) {
-        return error
-      } finally {
-        this.loading = false
-      }
     }
 
   }
