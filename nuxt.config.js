@@ -15,67 +15,23 @@ export default {
       { hid: 'og:type', property: 'og:type', content: 'website' },
       // Twitter
       // Test on: https://cards-dev.twitter.com/validator
-      {
-        hid: 'twitter:card',
-        name: 'twitter:card',
-        content: 'summary_large_image'
-      },
-      { hid: 'twitter:site', name: 'twitter:site', content: '@alinepontesadvocacia' },
-      {
-        hid: 'twitter:url',
-        name: 'twitter:url',
-        content: 'https://alinepontes.adv.br'
-      },
-      {
-        hid: 'twitter:title',
-        name: 'twitter:title',
-        content: 'Postagem - Aline Pontes Advocacia'
-      },
-      {
-        hid: 'twitter:description',
-        name: 'twitter:description',
-        content: 'Leia mais sobre em Aline Pontes Advocacia'
-      },
-      {
-        hid: 'twitter:image',
-        name: 'twitter:image',
-        content: 'https://i.ibb.co/nj2jSSg/logo-aline3.png'
-      },
+      // { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
+      // { hid: 'twitter:site', name: 'twitter:site', content: '@alinepontesadvocacia' },
+      // { hid: 'twitter:url', name: 'twitter:url', content: 'https://www.alinepontes.adv.br' },
+      // { hid: 'twitter:title', name: 'twitter:title', content: 'Postagem - Aline Pontes Advocacia' },
+      // { hid: 'twitter:description', name: 'twitter:description', content: 'Leia mais sobre em Aline Pontes Advocacia' },
+      // { hid: 'twitter:image', name: 'twitter:image', content: 'https://i.ibb.co/nj2jSSg/logo-aline3.png' },
 
-      // Open Graph
-      // Test on: https://developers.facebook.com/tools/debug/
-      { hid: 'og:site_name', property: 'og:site_name', content: 'Nuxt' },
-      { hid: 'og:type', property: 'og:type', content: 'website' },
-      {
-        hid: 'og:url',
-        property: 'og:url',
-        content: 'https://alinepontes.adv.br'
-      },
-      {
-        hid: 'og:title',
-        property: 'og:title',
-        content: 'Postagem - Aline Pontes Advocacia'
-      },
-      {
-        hid: 'og:description',
-        property: 'og:description',
-        content: 'Leia mais sobre em Aline Pontes Advocacia'
-      },
-      {
-        hid: 'og:image',
-        property: 'og:image',
-        content: 'https://i.ibb.co/nj2jSSg/logo-aline3.png'
-      },
-      {
-        hid: 'og:image:secure_url',
-        property: 'og:image:secure_url',
-        content: 'https://i.ibb.co/nj2jSSg/logo-aline3.png'
-      },
-      {
-        hid: 'og:image:alt',
-        property: 'og:image:alt',
-        content: 'AlinePontesAdvocacia'
-      }
+      // // Open Graph
+      // // Test on: https://developers.facebook.com/tools/debug/
+      // { hid: 'og:site_name', property: 'og:site_name', content: 'Nuxt' },
+      // { hid: 'og:type', property: 'og:type', content: 'website' },
+      // { hid: 'og:url', property: 'og:url', content: 'https://www.alinepontes.adv.br' },
+      // { hid: 'og:title', property: 'og:title', content: 'Postagem - Aline Pontes Advocacia' },
+      // { hid: 'og:description', property: 'og:description', content: 'Leia mais sobre em Aline Pontes Advocacia' },
+      // { hid: 'og:image', property: 'og:image', content: 'https://i.ibb.co/nj2jSSg/logo-aline3.png' },
+      // { hid: 'og:image:secure_url', property: 'og:image:secure_url', content: 'https://i.ibb.co/nj2jSSg/logo-aline3.png' },
+      // { hid: 'og:image:alt', property: 'og:image:alt', content: 'AlinePontesAdvocacia' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }

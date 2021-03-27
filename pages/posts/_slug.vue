@@ -136,9 +136,10 @@ export default {
   async asyncData ({ env, route, params, $axios, error, store }) {
     try {
       const post = (await $axios.get(`/posts/${params.slug}`)).data
-      const imageDefault = require('@/static/images/logo_aline1.png')
+      // const imageDefault = require('@/static/images/logo_aline1.png')
       const hrefLocation = env.baseURL + route.path
-      const image = post?.image?.url || imageDefault
+      // const image = post?.image?.url || imageDefault
+      const image = post?.image?.url
 
       // Setando os valores do SEO
       store.commit('setOgTitle', post.title)
