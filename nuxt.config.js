@@ -131,7 +131,7 @@ export default {
     },
     routes: async () => {
       const { data } = await axios.get(`${process.env.VUE_APP_BASE_URL_API}/posts`)
-      return data.map(post => `${process.env.BASE_URL}/posts/${post.slug}`)
+      return data.map(post => `posts/${post.slug}`)
     },
     filter ({ routes }) {
       return routes.map(route => {
