@@ -69,28 +69,19 @@ export default {
   name: 'Blog',
 
   data: () => ({
-    loading: false,
-    selection: 1,
     items: []
   }),
 
   async fetch () {
     try {
-      const { data } = await this.$axios.get('/posts?_limit=4&_sort=id:DESC')
-      this.items = data
+      this.items = await this.$strapi.find('posts?_limit=4&_sort=id:DESC')
     } catch (error) {
       return error
     }
   },
 
   methods: {
-    reserve () {
-      this.loading = true
-
-      setTimeout(() => (this.loading = false), 2000)
-    },
-
-    urlImage (item, destaque = false) {
+    urlImage (item) {
       if (item && item.image) {
         return item.image.formats.thumbnail.url
       }
