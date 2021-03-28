@@ -64,8 +64,8 @@ export default {
 
   env: {
     baseURL: process.env.BASE_URL || 'http://localhost:3000',
-    // strapiBaseUri: process.env.API_URL || 'http://localhost:1337'
-    strapiBaseUri: process.env.API_URL || 'http://localhost:1337'
+    // strapiBaseUri: process.env.VUE_APP_BASE_URL_API || 'http://localhost:1337'
+    strapiBaseUri: process.env.VUE_APP_BASE_URL_API || 'http://localhost:1337'
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -130,7 +130,7 @@ export default {
       lastmod: new Date()
     },
     routes: async () => {
-      const { data } = await axios.get(`${process.env.API_URL}/posts`)
+      const { data } = await axios.get(`${process.env.VUE_APP_BASE_URL_API}/posts`)
       return data.map(post => `${process.env.BASE_URL}/posts/${post.slug}`)
     },
     filter ({ routes }) {
