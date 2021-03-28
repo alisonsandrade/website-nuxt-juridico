@@ -3,7 +3,7 @@
     <SocialHead
       :title="post.title"
       :description="post.subtitle"
-      :image="image"
+      :image="imageUrl"
       :url="hrefLocation"
     />
     <!-- Link do Social Media -->
@@ -40,7 +40,8 @@
                   mdi-calendar-text
                 </v-icon>
 
-                <span class="font-weight-light">{{ new Date(post.published_at).toLocaleString() }}</span>
+                <!-- <span class="font-weight-light">{{ new Date(post.published_at).toLocaleString() }}</span> -->
+                <span class="font-weight-light">{{ moment(post.published_at).format('DD MMMM YYYY LTS') }}</span>
 
                 <v-icon
                   left
@@ -123,8 +124,11 @@
 </template>
 
 <script>
-import SocialHead from '@/components/SocialHead'
+import moment from 'moment'
 import SideBar from '@/components/SideBar'
+import SocialHead from '@/components/SocialHead'
+
+moment.locale('pt-br')
 
 export default {
   name: 'PostDetail',
@@ -133,24 +137,23 @@ export default {
 
   layout: 'blog',
 
-  async asyncData ({ env, route, params, $axios, error, store }) {
-    try {
-      const post = (await $axios.get(`/posts/${params.slug}`)).data
-      // const imageDefault = require('@/static/images/logo_aline1.png')
-      const hrefLocation = env.baseURL + route.path
-      // const image = post?.image?.url || imageDefault
-      const image = post?.image?.url
+  async asyncData ({ env, route, params, error, isDev, $strapi }) {
+    const BASE_URL = isDev ? 'https://www.alinepontes.adv.br' : env.baseURL
 
-      // Setando os valores do SEO
-      store.commit('setOgTitle', post.title)
-      store.commit('setOgDescription', post.subtitle)
-      store.commit('setOgImage', image)
-      store.commit('setOgUrl', hrefLocation)
+    try {
+      const post = (await $strapi.find('posts', {
+        slug: params.slug
+      }))[0]
+      // eslint-disable-next-line no-console
+      // console.log('post', post)
+      const imageDefault = require('@/static/images/logo_aline1.png')
+      const hrefLocation = BASE_URL + route.path
+      const imageUrl = post?.image?.url || imageDefault
 
       return {
         post,
         hrefLocation,
-        image
+        imageUrl
       }
     } catch (e) {
       error(e)
@@ -185,6 +188,8 @@ export default {
   },
 
   methods: {
+    moment,
+
     newComment (e) {
       this.resetCountDisqus()
     },

@@ -1,4 +1,8 @@
 import colors from 'vuetify/es5/util/colors'
+import getSiteMeta from './utils/getSiteMeta'
+
+const axios = require('axios')
+const meta = getSiteMeta()
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -48,8 +52,10 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/google-analytics'
-  ],
+    '@nuxtjs/google-analytics',
+    '@nuxtjs/sitemap',
+    '@nuxtjs/strapi'
+  ],  
 
   googleAnalytics: {
     id: process.env.ID_GOOGLE_ANALYTICS,
@@ -57,7 +63,9 @@ export default {
   },
 
   env: {
-    baseURL: process.env.BASE_URL || 'http://localhost:3000'
+    baseURL: process.env.BASE_URL || 'http://localhost:3000',
+    // strapiBaseUri: process.env.API_URL || 'http://localhost:1337'
+    strapiBaseUri: process.env.API_URL || 'http://localhost:1337'
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -106,5 +114,36 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+
+  sitemap: {
+    middleware: 'admin',
+    hostname: process.env.BASE_URL,
+    gzip: true,
+    exclude: [
+      '/secret',
+      '/admin/**'
+    ],
+    defaults: {
+      changefreq: 'daily',
+      priority: 1,
+      lastmod: new Date()
+    },
+    routes: async () => {
+      const { data } = await axios.get(`${process.env.API_URL}/posts`)
+      return data.map(post => `${process.env.BASE_URL}/posts/${post.slug}`)
+    },
+    filter ({ routes }) {
+      return routes.map(route => {
+        route.url = `${route.url}/`
+        return route
+      })
+    }
+  },
+
+  strapi: {
+    entities: ['post', 'frase', 'categoria'],
+    url: process.env.VUE_APP_BASE_URL_API || 'http://10.0.0.105:1337'
   }
+  
 }
