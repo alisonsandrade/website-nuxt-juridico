@@ -1,8 +1,6 @@
 import colors from 'vuetify/es5/util/colors'
-import getSiteMeta from './utils/getSiteMeta'
 
 const axios = require('axios')
-const meta = getSiteMeta()
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -13,11 +11,11 @@ export default {
       lang: 'pt-br'
     },
     meta: [
-      ...meta,
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'Website jurídico do escritório de advocacia Aline Pontes Advocacia (Guarabira/PB) com informações jurídicas atualizadas sobre as principais decisões judiciais dos Tribunais.' },
-      { hid: 'og:type', property: 'og:type', content: 'website' }
+      { hid: 'og:type', property: 'og:type', content: 'website' },
+      { hid: 'og:image', property: 'og:image', content: 'https://i.ibb.co/nj2jSSg/logo-aline3.png' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -54,7 +52,8 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/google-analytics',
     '@nuxtjs/sitemap',
-    '@nuxtjs/strapi'
+    '@nuxtjs/strapi',
+    'nuxt-seo'
   ],  
 
   googleAnalytics: {
@@ -130,6 +129,16 @@ export default {
       '/admin/**'
     ],
     crawler: false
+  },
+
+  seo: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+		name: 'Aline Pontes Advocacia',
+		title: 'Portal jurídico do escritório Aline Pontes Advocacia',
+		templateTitle: '%name% - %title%',
+		description: 'Website jurídico do escritório de advocacia Aline Pontes Advocacia (Guarabira/PB) com informações jurídicas atualizadas sobre as principais decisões judiciais dos Tribunais.',
+		canonical: 'auto',
+		isForcedTrailingSlash: false
   },
 
   sitemap: {

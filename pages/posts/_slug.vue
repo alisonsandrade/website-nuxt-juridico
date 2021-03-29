@@ -1,11 +1,5 @@
 <template>
   <article>
-    <SocialHead
-      :title="post.title"
-      :description="post.subtitle"
-      :image="imageUrl"
-      :url="hrefLocation"
-    />
     <!-- Link do Social Media -->
     <link
       rel="stylesheet"
@@ -126,29 +120,45 @@
 <script>
 import moment from 'moment'
 import SideBar from '@/components/SideBar'
-import SocialHead from '@/components/SocialHead'
 
 moment.locale('pt-br')
 
 export default {
   name: 'PostDetail',
 
-  components: { SideBar, SocialHead },
+  components: { SideBar },
 
   layout: 'blog',
 
-  async asyncData ({ env, route, params, error, isDev, $strapi }) {
+  async asyncData ({ env, route, params, error, isDev, $strapi, seo }) {
     const BASE_URL = isDev ? 'https://www.alinepontes.adv.br' : env.baseURL
 
     try {
       const post = (await $strapi.find('posts', {
         slug: params.slug
       }))[0]
-      // eslint-disable-next-line no-console
-      // console.log('post', post)
       const imageDefault = require('@/static/images/logo_aline1.png')
       const hrefLocation = BASE_URL + route.path
       const imageUrl = post?.image?.url || imageDefault
+
+      seo(
+        {
+          name: 'Site Aline Pontes Advocacia',
+          title: post.title,
+          templateTitle: '%name% - %title%',
+          description: post.subtitle,
+          image: imageUrl,
+          openGraph: post,
+          twitter: {
+            card: 'summary_large_image',
+            type: 'article',
+            title: post.title,
+            description: post.subtitle,
+            image: imageUrl,
+            site: '@alinepontesadvocacia'
+          }
+        }
+      )
 
       return {
         post,
