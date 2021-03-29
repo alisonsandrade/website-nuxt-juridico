@@ -116,6 +116,22 @@ export default {
   build: {
   },
 
+  generate: {
+    routes() {
+      return axios.get(`${process.env.VUE_APP_BASE_URL_API}/posts`).then((res) => {
+        return res.data.map((post) => {
+          return `/posts/${post.slug}`;
+        })
+      })
+    },
+    fallback: '404.html',
+    exclude: [
+      '/secret',
+      '/admin/**'
+    ],
+    crawler: false
+  },
+
   sitemap: {
     middleware: 'admin',
     hostname: process.env.BASE_URL,
