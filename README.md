@@ -1,5 +1,5 @@
-# Website Aline Pontes Advocacia
-Projeto de website desenvolvido com VueJS 2.x e Nuxt, conectando a uma API Strapi.
+# Website Jurídico
+Projeto de website desenvolvido com VueJS 2.x e Nuxt, conectando a uma API Strapi. Inicialmente foi desenvolvido para o escritório [Aline Pontes Advocacia](https://www.alinepontes.adv.br), porém, o desenvolvedor resolveu disponibilizar o código para acesso da comunidade, sob a licença MIT.
 
 ## Instalação do projeto
 
@@ -23,6 +23,7 @@ $ yarn generate
 - Blog com postagens jurídicas;
 - Página de detalhes dos posts com diversos meios de compartilhamentos nas redes sociais;
 - Plugin Disqus para comentários;
+- Renderização SSR com SEO;
 
 Para mais detalhes sobre o Framework Nuxt utilizado no frontend, visitar [Nuxt.js docs](https://nuxtjs.org).
 
